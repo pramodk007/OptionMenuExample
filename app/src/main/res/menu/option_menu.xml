@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/op_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_baseline_home_24"
         android:title="home" />
     <item
         android:id="@+id/op_setting"
-        android:icon="@drawable/ic__settings"
+        android:icon="@drawable/ic_baseline_settings_24"
         android:title="setting" />
     <item
-        android:id="@+id/op_upload"
-        android:icon="@drawable/ic_cloud_upload"
-        android:title="upload" />
+        android:id="@+id/op_send"
+        android:icon="@drawable/ic_baseline_send_24"
+        android:title="send" />
 </menu>

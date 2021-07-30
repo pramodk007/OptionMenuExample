@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.lang.reflect.Method;
+
 public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.option_menu,menu);
+        setIconsVisible(menu,true);
         return super.onCreateOptionsMenu(menu);
     }
     //event
@@ -36,10 +39,30 @@ public class MainActivity extends AppCompatActivity {
         {
             Toast.makeText(MainActivity.this, "you clicked on setting", Toast.LENGTH_SHORT).show();
         }
-        if(itemId == R.id.op_upload)
+        if(itemId == R.id.op_send)
         {
             Toast.makeText(MainActivity.this, "you clicked on upload", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+    /**
+     * Fix menu icon does not show problems
+     * @param menu
+     * @param flag
+     */
+    private void setIconsVisible(Menu menu, boolean flag) {
+        // determine whether the menu is empty
+        if(menu != null) {
+            try {
+                // if not empty, get a reflection of setOptionalIconsVisible method menu
+                Method method = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+                // access the method violence
+                method.setAccessible(true);
+                //The method // Call display icon
+                method.invoke(menu, flag);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
